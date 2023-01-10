@@ -29,9 +29,11 @@ class Game
 
     public function toHtml()
     {
+        $board = '';
         foreach ($this->_cards as $card) {
-            echo $card->toHtml();
+            $board .= $card->toHtml();
         }
+        return $board;
     }
 
     public function getPairsNb()
