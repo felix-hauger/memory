@@ -5,7 +5,7 @@ class Game
     /**
      * @var integer determine the number of pairs
      */
-    private $_pairs_nb = 6;
+    private $_pairs_nb;
 
     /**
      * @var boolean determine if a game is ongoing
@@ -17,6 +17,22 @@ class Game
      */
     private array $_cards;
 
+
+    public function createBoard()
+    {
+        for ($i = 0; $i < $this->_pairs_nb; $i++) {
+            $card = new Card();
+            $card->setName($i);
+            $this->_cards[] = $card;
+        }
+    }
+
+    public function toHtml()
+    {
+        foreach ($this->_cards as $card) {
+            echo $card->toHtml();
+        }
+    }
 
     public function getPairsNb()
     {
