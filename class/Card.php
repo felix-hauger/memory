@@ -17,6 +17,15 @@ class Card
     private $_status = 'verso';
 
 
+    public function flip()
+    {
+        if ($this->_status === 'verso') {
+            $this->_status = 'recto';
+        } elseif ($this->_status === 'recto') {
+            $this->_status = 'verso';
+        }
+    }
+
     public function getIndex()
     {
         return $this->_index;
