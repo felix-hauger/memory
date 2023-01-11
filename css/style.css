@@ -1,0 +1,44 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.main-wrapper {
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+}
+
+.main-wrapper > * {
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr;
+    max-width: 80vw;
+}
+
+.card {
+    border: 2px solid #FF5733;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.card.recto, .card.found {
+    height: 300px;
+
+}
+
+.card.found {
+    border-color: green;
+}
+
+.card img {
+    /* width: 100%; */
+    max-height: 100%;
+}
+
