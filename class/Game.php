@@ -29,6 +29,14 @@ class Game
         shuffle($this->_cards);
     }
 
+    public function start()
+    {
+        if (session_status() === PHP_SESSION_ACTIVE) {
+            $_SESSION['game'] = $this;
+            return $this;
+        }
+    }
+
     public function toHtml()
     {
         $board = '';
