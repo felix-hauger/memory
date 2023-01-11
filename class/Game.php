@@ -20,11 +20,13 @@ class Game
 
     public function createBoard()
     {
-        for ($i = 0; $i < $this->_pairs_nb; $i++) {
+        for ($i = 0; $i < $this->_pairs_nb * 2; $i++) {
             $card = new Card();
-            $card->setName($i);
+            $card->setId($i);
+            $card->setName($i % $this->_pairs_nb + 1);
             $this->_cards[] = $card;
         }
+        shuffle($this->_cards);
     }
 
     public function toHtml()
