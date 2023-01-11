@@ -16,7 +16,12 @@ class Card
      * @var string use to determine card status
      * values: verso, recto or paired
      */
-    private $_status = 'verso';
+    private $_status;
+
+    public function __construct()
+    {
+        $this->_status = 'recto';
+    }
 
 
     public function flip()
@@ -32,13 +37,14 @@ class Card
     {
         switch ($this->_status) {
             case 'verso':
-                echo 'verso<br />';
+                return '<div class="card" ><input type="image" src="media/img/verso.png" alt="verso"></div>';
                 break;
             case 'recto':
-                echo $this->_name . '<br />';
+                return '<div class="card" ><img src="media/img/' . $this->_name . '.png" alt="recto image' . $this->_name . '"></div>';
+                return $this->_name . '<br />';
                 break;
             case 'paired':
-                echo $this->_name . ' paired<br />';
+                return '<div class="card found"><img src="media/img/' . $this->_name . '.png" alt ="' . $this->_name . 'found"></div>';
                 break;
         }
     }
