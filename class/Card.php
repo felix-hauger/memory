@@ -20,7 +20,7 @@ class Card
 
     public function __construct()
     {
-        $this->_status = 'recto';
+        $this->_status = 'verso';
     }
 
 
@@ -37,10 +37,10 @@ class Card
     {
         switch ($this->_status) {
             case 'verso':
-                return '<div class="card" ><input type="image" src="media/img/verso.png" alt="verso"></div>';
+                return '<div class="card verso" ><input type="image" src="media/img/verso.png" alt="verso"></div>';
                 break;
             case 'recto':
-                return '<div class="card" ><img src="media/img/' . $this->_name . '.png" alt="recto image' . $this->_name . '"></div>';
+                return '<div class="card recto" ><img src="media/img/' . $this->_name . '.png" alt="recto image' . $this->_name . '"></div>';
                 return $this->_name . '<br />';
                 break;
             case 'paired':
