@@ -3,9 +3,9 @@
 class Card
 {
     /**
-     * @var integer used to determine cards order
+     * @var integer used to identify the card
      */
-    private $_index;
+    private $_id;
 
     /**
      * @var string used to determine card image / pair
@@ -49,14 +49,14 @@ class Card
         }
     }
 
-    public function getIndex()
+    public function getId()
     {
-        return $this->_index;
+        return $this->_id;
     }
 
-    public function setIndex($index)
+    public function setId($id)
     {
-        $this->_index = $index;
+        $this->_id = $id;
     }
 
     public function getName()
