@@ -37,11 +37,10 @@ class Card
     {
         switch ($this->_status) {
             case 'verso':
-                return '<div class="card verso" ><input type="image" src="media/img/verso.png" alt="verso"></div>';
+                return '<button type="submit" name="card" value="'. $this->_id .'" class="card verso" ><img src="media/img/verso.png" alt="verso"></button>';
                 break;
             case 'recto':
                 return '<div class="card recto" ><img src="media/img/' . $this->_name . '.png" alt="recto image' . $this->_name . '"></div>';
-                return $this->_name . '<br />';
                 break;
             case 'paired':
                 return '<div class="card found"><img src="media/img/' . $this->_name . '.png" alt ="' . $this->_name . 'found"></div>';

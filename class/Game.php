@@ -22,17 +22,27 @@ class Game
     {
         for ($i = 0; $i < $this->_pairs_nb * 2; $i++) {
             $card = new Card();
-            $card->setId($i);
+            $card->setId($i+1);
             $card->setName($i % $this->_pairs_nb + 1);
+            // $card->setName(rand(1, $this->_pairs_nb));
             $this->_cards[] = $card;
         }
         shuffle($this->_cards);
     }
 
-    public function start()
+    /**
+     * set session variables to instanciated Game, and id of cards to compare them when clicked
+     * @return Game $this
+     */
+    public function start(): ?Game
     {
         if (session_status() === PHP_SESSION_ACTIVE) {
             $_SESSION['game'] = $this;
+            $cards = [];
+            foreach ($this->_cards as $card) {
+                $cards[] = $card->getId();
+            }
+            $_SESSION['cards'] = $cards;
             return $this;
         }
     }

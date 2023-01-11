@@ -5,11 +5,21 @@ require_once 'class/Card.php';
 require_once 'class/Game.php';
 session_start();
 
+var_dump($_POST);
 
 
 if (isset($_SESSION['game'])) {
     if ($_SESSION['game']->getStatus() === true) {
         $current_game = $_SESSION['game'];
+
+        if (isset($_POST['card'])) {
+            $card_id = (int) $_POST['card'];
+            var_dump($current_game->getCards()[$card_id]);
+            var_dump(array_search($card_id, $_SESSION['cards']));
+            // search at which index the card id of the clicked card is located
+            $index = array_search($card_id, $_SESSION['cards']);
+            $current_game->getCards()[$index]->flip();
+        }
     }
 } else {
     $game = new Game();
@@ -19,8 +29,10 @@ if (isset($_SESSION['game'])) {
     $game->createBoard();
     $game->start();
 }
+var_dump($_SESSION['cards']);
+
+
 // session_destroy();
-var_dump($_SESSION['game']);
 ?>
 
 <!DOCTYPE html>
@@ -42,7 +54,7 @@ var_dump($_SESSION['game']);
         <button type="submit">Jouer</button>
     </form> -->
     
-    <form action="">
+    <form method="post">
         <div class="grid">
             <?= isset($current_game) ? $current_game->toHtml() : '' ?>
 
