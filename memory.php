@@ -13,9 +13,10 @@ if (isset($_SESSION['game'])) {
         $current_game = $_SESSION['game'];
 
         if (isset($_POST['card'])) {
+            $current_game->checkCards();
             $card_id = (int) $_POST['card'];
-            var_dump($current_game->getCards()[$card_id]);
             var_dump(array_search($card_id, $_SESSION['cards']));
+
             // search at which index the card id of the clicked card is located
             $index = array_search($card_id, $_SESSION['cards']);
             $current_game->getCards()[$index]->flip();

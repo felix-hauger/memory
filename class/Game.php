@@ -47,6 +47,9 @@ class Game
         }
     }
 
+    /**
+     * return html from cards
+     */
     public function toHtml()
     {
         $board = '';
@@ -54,6 +57,27 @@ class Game
             $board .= $card->toHtml();
         }
         return $board;
+    }
+
+    /**
+     * check if there is two or more flipped cards
+     */
+    public function checkCards()
+    {
+        $recto_cards = [];
+        foreach ($this->_cards as $card) {
+            if (count($recto_cards) > 1) {
+                foreach($this->_cards as $c) {
+                    if ($c->getStatus() === 'recto') {
+                        $c->flip();
+                    }
+                }
+                break;
+            } elseif ($card->getStatus() === 'recto') {
+                $recto_cards[] = $card->getName();
+            }
+        }
+        var_dump($recto_cards);
     }
 
     public function getPairsNb()
