@@ -60,6 +60,17 @@ class Game
     }
 
     /**
+     * set status of recto cards to paired, used if cards have the same name in checkCards() method
+     */
+    private function pairCards() {
+        foreach($this->_cards as $card) {
+            if ($card->getStatus() === 'recto') {
+                $card->setStatus('paired');
+            }
+        }
+    }
+
+    /**
      * check if there is two or more flipped cards
      */
     public function checkCards()
@@ -67,9 +78,13 @@ class Game
         $recto_cards = [];
         foreach ($this->_cards as $card) {
             if (count($recto_cards) > 1) {
-                foreach($this->_cards as $c) {
-                    if ($c->getStatus() === 'recto') {
-                        $c->flip();
+                if ($recto_cards[0] === $recto_cards[1]) {
+                    $this->pairCards();
+                } else {
+                    foreach($this->_cards as $c) {
+                        if ($c->getStatus() === 'recto') {
+                            $c->flip();
+                        }
                     }
                 }
                 break;
